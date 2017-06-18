@@ -1,1 +1,3 @@
-alert('hello world!');
+import { countryList } from './countryList';
+
+console.log(countryList);
