@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
-import countries from './countries';
+import countrySearchService from './countrySearchService';
 import SearchBox from './SearchBox';
+import SearchResultList from './SearchResultList';
 
 export default class App extends Component {
-  countrySearch(term) {
-    console.log(term);
+  constructor(props) {
+    super(props);
+    this.state = { countrySearchResults: [] };
   }
 
+  countrySearch(term) {
+    const results = countrySearchService.search(term);
+    this.setState({ countrySearchResults: results });
+  };
+
   render() {
-    return <SearchBox onSearchTermChange={this.countrySearch} />;
+    return (
+      <div>
+        <SearchBox onSearchTermChange={this.countrySearch.bind(this)} />
+        <SearchResultList results={this.state.countrySearchResults} />
+      </div>
+    );
   }
 }

@@ -1,9 +1,5 @@
-export default class CountrySearchService {
-  constructor(countries) {
-    this.countries = countries;
-  }
+import countries from './countries';
 
-  search(term) {
-    return this.countries.filter(country => country === term);
-  }
-}
+const search = term => countries.filter(country => country === term);
+
+export default { search };
