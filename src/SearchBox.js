@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormControl } from 'react-bootstrap';
 
 class SearchBox extends Component {
   constructor(props) {
@@ -8,11 +9,12 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <div className='search-box' >
-        <input
-          value={this.state.term}
-          onChange={event => this.onInputChange(event.target.value)} />
-      </div>
+      <FormControl
+        type="text"
+        value={this.state.term}
+        placeholder="Search for a country"
+        onChange={event => this.onInputChange(event.target.value)}
+      />
     );
   }
 

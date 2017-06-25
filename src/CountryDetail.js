@@ -1,7 +1,7 @@
 import React  from 'react';
 
 const CountryDetail = ({ country }) => {
-  return country ? <div>{country}</div> : null;
+  return country ? <h4>{country}</h4> : null;
 }
 
 export default CountryDetail;

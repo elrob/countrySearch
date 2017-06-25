@@ -1,6 +1,7 @@
-import React  from 'react';
+import React from 'react';
+import { MenuItem } from 'react-bootstrap';
 
 const SearchResultListItem = ({ result, onSearchResultSelect }) =>
-  <li onClick={() => onSearchResultSelect(result)}>{result}</li>;
+  <MenuItem onSelect={() => onSearchResultSelect(result)}>{result}</MenuItem>;
 
 export default SearchResultListItem;
