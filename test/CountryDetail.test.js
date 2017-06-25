@@ -7,7 +7,7 @@ describe('<CountryDetail />', function () {
   it('should display country', function() {
     const country = 'Japan';
     const wrapper = shallow(<CountryDetail country={country} />);
-    expect(wrapper.find('div')).to.have.length(1);
+    expect(wrapper.find('h4')).to.have.length(1);
   });
 
   it('should not display country when there is none', function() {

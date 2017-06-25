@@ -14,6 +14,7 @@ class SearchBox extends Component {
         value={this.state.term}
         placeholder='Search for a country'
         onChange={event => this.onInputChange(event.target.value)}
+        onKeyDown={event => this.props.onKeyDown(event.keyCode)}
         autoFocus
       />
     );

@@ -16,9 +16,9 @@ describe('<SearchResults />', function () {
     expect(displayedResults.at(1).props().result).to.equal(searchResults[1]);
   });
 
-  it('should include a maximum of five results', function() {
+  it('should only display max displayed search results', function() {
     const searchResults = ['aa', 'bb', 'cc', 'dd', 'ee', 'ff'];
-    const wrapper = shallow(<SearchResultList results={searchResults} />);
+    const wrapper = shallow(<SearchResultList results={searchResults} maxDisplayedSearchResults={5} />);
 
     expect(wrapper.find('ul')).to.have.length(1);
 
@@ -34,5 +34,15 @@ describe('<SearchResults />', function () {
 
     expect(wrapper.find('ul')).to.have.length(0);
     expect(wrapper.find('SearchResultListItem')).to.have.length(0);
+  });
+
+  it('should focus the active search result', function() {
+    const searchResults = ['aaa', 'bbb', 'ccc'];
+    const wrapper = shallow(<SearchResultList results={searchResults} activeSearchResultIndex={1} />);
+
+    const displayedResults = wrapper.find('SearchResultListItem');
+    expect(displayedResults.at(0).props().active).to.equal(false);
+    expect(displayedResults.at(1).props().active).to.equal(true);
+    expect(displayedResults.at(2).props().active).to.equal(false);
   });
 });
