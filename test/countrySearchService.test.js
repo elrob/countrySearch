@@ -14,4 +14,8 @@ describe('countrySearchService - search', function () {
   it('should return empty array when no matches', function () {
     expect(search('not a country')).to.be.empty;
   });
+
+  it('should match multiple by prefix', function() {
+    expect(search('United')).to.eql(['United Arab Emirates', 'United Kingdom', 'United States']);
+  });
 });

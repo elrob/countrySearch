@@ -17,7 +17,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <SearchBox onSearchTermChange={this.countrySearch.bind(this)} />
+        <SearchBox onSearchTermChange={term => this.countrySearch(term)} />
         <SearchResultList results={this.state.countrySearchResults} />
       </div>
     );

@@ -1,5 +1,5 @@
 import countries from './countries';
 
-const search = term => countries.filter(country => country === term);
+const search = term => countries.filter(country => country.startsWith(term));
 
 export default { search };
