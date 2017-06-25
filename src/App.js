@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid, Row, Col } from 'react-bootstrap';
 import countrySearchService from './countrySearchService';
 import CountryDetail from './CountryDetail';
 import SearchBox from './SearchBox';
@@ -20,16 +21,22 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <Grid>
         <h1>Country Search</h1>
-        <SearchBox onSearchTermChange={term => this.countrySearch(term)} />
-        <SearchResultList
-          results={this.state.countrySearchResults}
-          onSearchResultSelect={selectedCountry =>
-            this.setState({countrySearchResults: [], selectedCountry})}
-        />
-        <CountryDetail country={this.state.selectedCountry} />
-      </div>
+        <Row>
+          <Col md={6}>
+            <SearchBox onSearchTermChange={term => this.countrySearch(term)} />
+            <SearchResultList
+              results={this.state.countrySearchResults}
+              onSearchResultSelect={selectedCountry =>
+                this.setState({countrySearchResults: [], selectedCountry})}
+            />
+          </Col>
+          <Col md={6}>
+            <CountryDetail country={this.state.selectedCountry} />
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

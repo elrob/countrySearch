@@ -10,10 +10,11 @@ class SearchBox extends Component {
   render() {
     return (
       <FormControl
-        type="text"
+        type='text'
         value={this.state.term}
-        placeholder="Search for a country"
+        placeholder='Search for a country'
         onChange={event => this.onInputChange(event.target.value)}
+        autoFocus
       />
     );
   }
