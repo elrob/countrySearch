@@ -4,6 +4,7 @@ import countrySearchService from './countrySearchService';
 import CountryDetail from './CountryDetail';
 import SearchBox from './SearchBox';
 import SearchResultList from './SearchResultList';
+import SearchNavigationKeyCodes from './searchNavigationKeyCodes';
 
 const MAX_DISPLAYED_SEARCH_RESULTS = 5;
 
@@ -52,18 +53,16 @@ export default class App extends Component {
   }
 
   onSearchBoxKeyDown(keyCode) {
-    const UP_ARROW = 38;
-    const DOWN_ARROW = 40;
-    const ENTER = 13;
+    const { upArrow, downArrow, enter } = SearchNavigationKeyCodes;
 
     switch(keyCode) {
-      case UP_ARROW:
+      case upArrow:
         this.onSearchBoxUpArrowPress();
         break;
-      case DOWN_ARROW:
+      case downArrow:
         this.onSearchBoxDownArrowPress();
         break;
-      case ENTER:
+      case enter:
         this.onSearchBoxEnterKeyPress()
         break;
     }
