@@ -13,4 +13,9 @@ describe('<App />', function () {
     const wrapper = shallow(<App />);
     expect(wrapper.find('SearchResultList')).to.have.length(1);
   });
+
+  it('should include CountryDetail', function() {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('CountryDetail')).to.have.length(1);
+  });
 });

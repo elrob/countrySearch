@@ -1,11 +1,16 @@
 import React from 'react';
 import SearchResultListItem from './SearchResultListItem';
 
-const SearchResultList = ({ results }) => {
+const SearchResultList = ({ results, onSearchResultSelect }) => {
   return results && results.length
   ? (
     <ul>
-      {results.map(result => <SearchResultListItem key={result} result={result} />)}
+      {results.slice(0,5).map(result =>
+        <SearchResultListItem
+          key={result}
+          result={result}
+          onSearchResultSelect={onSearchResultSelect}
+        />)}
     </ul>
   )
   : null;

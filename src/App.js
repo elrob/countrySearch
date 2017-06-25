@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import countrySearchService from './countrySearchService';
+import CountryDetail from './CountryDetail';
 import SearchBox from './SearchBox';
 import SearchResultList from './SearchResultList';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { countrySearchResults: [] };
+    this.state = {
+      countrySearchResults: [],
+      selectedCountry: null
+    };
   }
 
   countrySearch(term) {
@@ -18,7 +22,11 @@ export default class App extends Component {
     return (
       <div>
         <SearchBox onSearchTermChange={term => this.countrySearch(term)} />
-        <SearchResultList results={this.state.countrySearchResults} />
+        <SearchResultList
+          results={this.state.countrySearchResults}
+          onSearchResultSelect={selectedCountry => this.setState({selectedCountry})}
+        />
+        <CountryDetail country={this.state.selectedCountry} />
       </div>
     );
   }
