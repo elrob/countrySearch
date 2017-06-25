@@ -14,7 +14,8 @@ export default class App extends Component {
     this.state = {
       countrySearchResults: [],
       activeCountrySearchResultIndex: 0,
-      selectedCountry: null
+      selectedCountry: null,
+      selectedCountryFlagUrl: null
     };
   }
 
@@ -42,13 +43,26 @@ export default class App extends Component {
     this.setState({activeCountrySearchResultIndex});
   }
 
+  onCountrySelect(country) {
+    this.setState({
+      selectedCountry: country,
+      activeCountrySearchResultIndex: 0,
+      countrySearchResults: [],
+      selectedCountryFlagUrl: null
+    });
+
+    fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+      .then(res => res.json())
+      .then(json => {
+        if (json && json.length) {
+          this.setState({ selectedCountryFlagUrl: json[0].flag });
+        }
+      });
+  }
+
   onSearchBoxEnterKeyPress() {
     if (this.state.countrySearchResults.length) {
-      this.setState({
-        selectedCountry: this.state.countrySearchResults[this.state.activeCountrySearchResultIndex],
-        activeCountrySearchResultIndex: 0,
-        countrySearchResults: []
-      });
+      this.onCountrySelect(this.state.countrySearchResults[this.state.activeCountrySearchResultIndex]);
     }
   }
 
@@ -82,12 +96,14 @@ export default class App extends Component {
               activeSearchResultIndex={this.state.activeCountrySearchResultIndex}
               results={this.state.countrySearchResults}
               maxDisplayedSearchResults={MAX_DISPLAYED_SEARCH_RESULTS}
-              onSearchResultSelect={selectedCountry =>
-                this.setState({countrySearchResults: [], selectedCountry})}
+              onSearchResultSelect={selectedCountry => this.onCountrySelect(selectedCountry)}
             />
           </Col>
           <Col md={6}>
-            <CountryDetail country={this.state.selectedCountry} />
+            <CountryDetail
+              country={this.state.selectedCountry}
+              flagUrl={this.state.selectedCountryFlagUrl}
+            />
           </Col>
         </Row>
       </Grid>

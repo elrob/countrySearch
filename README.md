@@ -1,5 +1,8 @@
 # CountrySearch
 
+Tiny React app for searching countries.
+As a bonus, the country's flag is displayed.
+
 ### Requirements:
 
 - Node.js v6.11.0 (.nvmrc file is included so if you use nvm you can simply run: `nvm use`)
@@ -11,7 +14,8 @@
 
 ### Run:
 
-Just open **index.html** in your browser
+Just open **index.html** in your browser.
+To display flags an internet connection must be available.
 
 ### Test:
 
