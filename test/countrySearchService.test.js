@@ -13,6 +13,7 @@ describe('countrySearchService - search', function () {
 
   it('should return empty array when no matches', function () {
     expect(search('not a country')).to.be.empty;
+    expect(search('')).to.be.empty;
   });
 
   it('should match multiple by prefix', function() {
@@ -27,4 +28,8 @@ describe('countrySearchService - search', function () {
     expect(search('jApAn')).to.eql(['Japan']);
   });
 
+  it('should ignore non-alphabetical characters', function() {
+    expect(search('CoCoaskeel ing')).to.eql(['Cocoas (Keeling) Islands']);
+    expect(search(' j !@£$% a ^&*() p 123 ')).to.eql(['Japan']);
+  });
 });
