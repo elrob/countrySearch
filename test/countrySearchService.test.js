@@ -18,4 +18,13 @@ describe('countrySearchService - search', function () {
   it('should match multiple by prefix', function() {
     expect(search('United')).to.eql(['United Arab Emirates', 'United Kingdom', 'United States']);
   });
+
+  it('should not match if not prefix', function() {
+    expect(search('Kingdom')).to.eql([]);
+  });
+
+  it('should not be case-sensitive', function() {
+    expect(search('jApAn')).to.eql(['Japan']);
+  });
+
 });
